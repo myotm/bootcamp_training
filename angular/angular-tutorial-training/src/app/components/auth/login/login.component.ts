@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { User } from '../../../models/user.model';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  public user: User;
 
-  ngOnInit() {
+  @Output()
+  public loginClick = new EventEmitter();
+
+  @Output()
+  public toggleAuthClick = new EventEmitter();
+
+  public loginForm = FormGroup;
+
+  constructor( private formBuilder : FormBuilder ) { 
+
   }
 
+  ngOnInit() {
+    
+  }
+
+  
 }
