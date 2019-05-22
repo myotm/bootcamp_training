@@ -1,3 +1,34 @@
+<h1>First Section</h1>
 <p>
-  login works!
+   Hi {{ user.fullName }} ! 
 </p>
+
+<h1>Second Section</h1>
+<div>
+   <input placeholder="Username" [(ngModel)]="user.username">
+   <input type="password" placeholder="Password" [(ngModel)]="user.password">
+</div>
+<br>
+<h1>Third Section</h1>
+<div>
+   Username: {{ user.username }}
+   Password: {{ user.password }}
+</div>
+<div>
+  <span>Username: </span>
+  <input type="text" [(ngModel)]="input_username"/>
+<div>
+  <a href="components/auth/login/login.component.html">Go to Login Page</a>
+</div>
+<div>
+   <a href="components/auth/signup/signup.component.html">Go to Signup Page</a>
+</div>
+<div>
+   <a href="components/testing/thumbnail/thumbnail.component.html">Go to Thumbnail Page</a>
+</div>
+<div>
+  <span>Password: </span>
+  <input type="password" [(ngModel)]="input_password"/>
+
+</div>
+<button (click)="onLoginClick()"> Login </button>
