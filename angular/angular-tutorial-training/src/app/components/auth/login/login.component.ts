@@ -4,7 +4,7 @@ import {
   OnInit, AfterViewInit
 } from '@angular/core';
 import { User } from '../../../models/user.model';
-
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -12,13 +12,14 @@ import { User } from '../../../models/user.model';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  @Input() public user: User;
+  @Input() public user : User;
 
+  @Output() public loginForm : FormGroup;
   
   
-  constructor() {
+  constructor( private formbuilder : FormBuilder ) {
     this.user = {
-      username: 'myo',
+      email: 'myo',
       password: 'myo123',
       fullName: 'Myo Thura Maung',
       address: 'YANGON'
@@ -27,6 +28,15 @@ export class LoginComponent implements OnInit {
 
   
   public ngOnInit() {
+    this.initLoginForm();
+  }
+
+
+  public initLoginForm(){
+    this.loginForm = this.formbuilder.group({
+      emailControl: ['', [Validators.required]],
+      passwordControl: ['',[Validators.required]]
+    });
   }
 
   
@@ -34,7 +44,7 @@ export class LoginComponent implements OnInit {
   
   public onLoginClick(){
     console.log("Pressed Login.");
-    console.log(this.user.username + "--------" + this.user.fullName + " has logged in.");
+    console.log(this.user.email + "--------" + this.user.fullName + " has logged in.");
     
   }
 

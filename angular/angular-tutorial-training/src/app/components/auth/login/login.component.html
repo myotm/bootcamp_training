@@ -1,10 +1,16 @@
-<mat-form-field>
-   <input matInput placeholder="Username" formControlName="usernameControl" [(ngModel)]="user.username">
-   <mat-error *ngIf="loginForm.controls.usernameControl.hasError('required')">
-       Username is <strong>required</strong>
-   </mat-error>
-</mat-form-field>
+<form [formGroup]="loginForm">
 
-<button mat-raised-button ... [disabled]="!loginForm.valid">Login</button>
+    <mat-form-field>
+        <input matInput placeholder="Email" formControlName="emailControl" [(ngModel)]="user.email">
+
+        <mat-error *ngIf = "loginform.controls.emailControl.hasError('required')">
+            Email is <strong>required.</strong>
+        </mat-error>
+
+    </mat-form-field>
+    <button mat-raised-button (click)="onLoginClick()" [disabled]="!loginForm.valid">LOGIN</button>
+
+
 
 </form>
+
