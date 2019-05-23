@@ -14,10 +14,7 @@ import { User } from '../../../models/user.model';
 export class LoginComponent implements OnInit {
   @Input() public user: User;
 
- 
-
-
-
+  
   
   constructor() {
     this.user = {

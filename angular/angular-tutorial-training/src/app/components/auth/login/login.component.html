@@ -1,34 +1,10 @@
-<h1>First Section</h1>
-<p>
-   Hi {{ user.fullName }} ! 
-</p>
+<mat-form-field>
+   <input matInput placeholder="Username" formControlName="usernameControl" [(ngModel)]="user.username">
+   <mat-error *ngIf="loginForm.controls.usernameControl.hasError('required')">
+       Username is <strong>required</strong>
+   </mat-error>
+</mat-form-field>
 
-<h1>Second Section</h1>
-<div>
-   <input placeholder="Username" [(ngModel)]="user.username">
-   <input type="password" placeholder="Password" [(ngModel)]="user.password">
-</div>
-<br>
-<h1>Third Section</h1>
-<div>
-   Username: {{ user.username }}
-   Password: {{ user.password }}
-</div>
-<div>
-  <span>Username: </span>
-  <input type="text" [(ngModel)]="input_username"/>
-<div>
-  <a href="components/auth/login/login.component.html">Go to Login Page</a>
-</div>
-<div>
-   <a href="components/auth/signup/signup.component.html">Go to Signup Page</a>
-</div>
-<div>
-   <a href="components/testing/thumbnail/thumbnail.component.html">Go to Thumbnail Page</a>
-</div>
-<div>
-  <span>Password: </span>
-  <input type="password" [(ngModel)]="input_password"/>
+<button mat-raised-button ... [disabled]="!loginForm.valid">Login</button>
 
-</div>
-<button (click)="onLoginClick()"> Login </button>
+</form>

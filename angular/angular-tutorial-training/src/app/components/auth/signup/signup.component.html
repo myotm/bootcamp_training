@@ -1,3 +1,18 @@
-<p>
-  signup works!
-</p>
+<h1>SIGNUP PAGE</h1>>
+<div>
+  <span>Username: </span>
+  <input type="text" [(ngModel)]="input_username"/>
+
+<div>
+  <span>Password: </span>
+  <input type="password" [(ngModel)]="input_password"/>
+
+</div>
+<button (click)="onLoginClick()"> Login </button>
+
+<div>
+   <a href="components/auth/login/login.component.html">Go to Login Page</a>
+ </div>
+ <div>
+    <a href="components/auth/signup/signup.component.html">Go to Signup Page</a>
+ </div>

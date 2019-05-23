@@ -1,18 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {  MatInputModule, MatButtonModule } from '@angular/material';
+
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
-import { ThumbnailComponent } from './components/testing/thumbnail/thumbnail.component';
 import { RouterModule, Routes } from '@angular/router';
 
 
 const appRoutes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: '',      component: LoginComponent },
-  { path: 'thumbnail',      component: ThumbnailComponent }
   
   
 ];
@@ -22,12 +23,16 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent,
-    ThumbnailComponent
+    SignupComponent
+    
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true }
@@ -37,9 +42,7 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule { 
-  public onThumbnailLoad(thumbnail: File, ) {
     
-}
 
 }
 
