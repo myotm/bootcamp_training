@@ -3,12 +3,19 @@
     <mat-form-field>
         <input matInput placeholder="Email" formControlName="emailControl" [(ngModel)]="user.email">
 
-        <mat-error *ngIf = "loginform.controls.emailControl.hasError('required')">
+        <mat-error *ngIf = "loginForm.controls.emailControl.hasError('required')">
             Email is <strong>required.</strong>
         </mat-error>
 
     </mat-form-field>
-    <button mat-raised-button (click)="onLoginClick()" [disabled]="!loginForm.valid">LOGIN</button>
+
+    <mat-form-field>
+        <input matInput placeholder="Password" type="password" formControlName="passwordControl" [(ngModel)]="user.password">
+        <mat-error *ngIf= "loginForm.controls.passwordControl.hasError('required')">
+            Password is <strong>required.</strong>
+        </mat-error>
+    </mat-form-field>
+    <button mat-raised-button  [disabled]="!loginForm.valid">LOGIN</button>
 
 
 

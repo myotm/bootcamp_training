@@ -1,18 +1,85 @@
-<h1>SIGNUP PAGE</h1>>
-<div>
-  <span>Username: </span>
-  <input type="text" [(ngModel)]="input_username"/>
+<h1>Signup Page</h1>
 
-<div>
-  <span>Password: </span>
-  <input type="password" [(ngModel)]="input_password"/>
+<form [formGroup]="signupForm">
+  
+  <div class="form-container" >
+    <!-- Email -->
+    <mat-form-field>
+      <input matInput placeholder="Email" formControlName="emailControl" [(ngModel)]="user.email">
+      <mat-error *ngIf="signupForm.controls.emailControl.hasError('required')">
+        Email is required.
+      </mat-error>
+      <mat-error *ngIf="signupForm.controls.emailControl.hasError('email')">
+        Please enter a valid email address.
+      </mat-error>
+    </mat-form-field>
+    <!-- Password and Retype Password -->
+    <mat-form-field>
+      <input matInput placeholder="Password" type="password"  formControlName="passwordControl" [(ngModel)]="user.password">
+      <mat-error *ngIf="signupForm.controls.passwordControl.hasError('required')">
+        Password is required.
+      </mat-error>
+      <mat-error *ngIf="signupForm.controls.passwordControl.hasError('validatePasswordStrength')">
+        Must have a minimum of 6 characters!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Retype Password" type="password"  formControlName="retypePasswordControl">
+      <mat-error *ngIf="signupForm.controls.retypePasswordControl.hasError('required')">
+        Password is required.
+      </mat-error>
+      <mat-error *ngIf="signupForm.controls.retypePasswordControl.hasError('validatePasswordMatch')">
+        Must have a minimum of 6 characters!
+      </mat-error>
+    </mat-form-field>
+    <!-- Full Name -->
+    <mat-form-field>
+      <input matInput placeholder="Full Name" formControlName="fullNameControl" [(ngModel)]="user.fullName">  
+      <mat-error *ngIf="signupForm.controls.fullNameControl.hasError('required')">
+          Full-Name is required.
+        </mat-error>
+    </mat-form-field>
+    <!-- Gender -->
+    <mat-radio-group>
+      <mat-radio-button value="Male">Male</mat-radio-button>
+      <mat-radio-button value="Female">Female</mat-radio-button>
+    </mat-radio-group>
 
-</div>
-<button (click)="onLoginClick()"> Signup </button>
+    <!-- DOB -->
+    <mat-form-field>
+      <input matInput [matDatepicker]="DOB" placeholder="Date of Birth" formControlName="dobControl" [(ngModel)]="user.dob">
+      <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+      <mat-error *ngIf="signupForm.controls.dobControl.hasError('required')">
+        Date of birth is required.
+      </mat-error>
+      <mat-error *ngIf="signupForm.controls.dobControl.hasError('validateDOB')">
+        Date must be before today.
+      </mat-error>
+    </mat-form-field>
 
-<div>
-   <a href="components/auth/login/login.component.html">Go to Login Page</a>
- </div>
- <div>
-    <a href="components/auth/signup/signup.component.html">Go to Signup Page</a>
- </div>
+    <!-- Address -->
+    <mat-form-field>
+      <input matInput placeholder="Address" formControlName="addressControl" [(ngModel)]="user.address">
+      <mat-error *ngIf="signupForm.controls.addressControl.hasError('required')">
+        Address is required.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- PhoneNo -->
+    <mat-form-field>
+      <input matInput placeholder="PhoneNO" formControlName="phoneControl" [(ngModel)]="user.PhoneNo">
+      <mat-error *ngIf="signupForm.controls.phoneControl.hasError('required')">
+        Phone is required.
+      </mat-error>
+      <mat-error *ngIf="signupForm.controls.phoneControl.hasError('validatePhone')">
+        Put phone number.
+      </mat-error>
+    </mat-form-field>
+
+  </div>
+
+  <div>
+    <button class="form-button" mat-raised-button (click)="onSignupClick()" [disabled]="!signupForm.valid">SIGN UP</button>
+  </div>
+
+</form>
