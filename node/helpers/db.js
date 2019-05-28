@@ -1,5 +1,5 @@
 var mongoClient = require('mongodb').MongoClient;
-var appConfig = require("../config.json");
+var appConfig = require("../config/config.json");
 
 var mongodbUrl = "mongodb://" + appConfig.mongo.host + ":" + appConfig.mongo.port + "/" + appConfig.mongo.testdb;
 

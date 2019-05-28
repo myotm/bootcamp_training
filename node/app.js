@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var db = require('./helpers/db');
 var httpHelper = require('./helpers/http');
 
-var appConfig = require('./config/');
+var appConfig = require('./config/config.json');
 
 process.title="bootcamptraining_API";
 

@@ -31,7 +31,9 @@ export class SignupComponent implements OnInit {
       address: 'YANGON',
       gender: 'Male',
       dob: '1/18/1996',
-      phoneNo: 123
+      phoneNo: 123,
+      city: "Kuala Lumpur",
+      country: "Malaysia"
     };
     
     
