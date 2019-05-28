@@ -11,4 +11,7 @@ export class User implements Auth {
     public gender : string;
     public dob : string;
     public phoneNo: number;
+    public city: string;
+    public country: string;
+    
 }

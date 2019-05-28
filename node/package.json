@@ -1,0 +1,16 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "bootcampTrainingNodeAPI server",
+  "main": "app.js",
+  "dependencies": {
+    "mongodb": "^3.2.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Myo Thura Maung",
+  "license": "ISC"
+}

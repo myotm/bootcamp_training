@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { User } from '../../../models/user.model';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ValidatorService } from '../../../services/validator.service';
+import { FormControl } from '@angular/forms';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -9,6 +11,8 @@ import { ValidatorService } from '../../../services/validator.service';
 })
 export class SignupComponent implements OnInit {
   @Input() public user : User;
+
+  @Input() public inputString : string;
 
   @Output() public signupClick = new EventEmitter();
   
@@ -26,9 +30,11 @@ export class SignupComponent implements OnInit {
       fullName: 'Myo Thura Maung',
       address: 'YANGON',
       gender: 'Male',
-      dob: 'January',
+      dob: '1/18/1996',
       phoneNo: 123
     };
+    
+    
   }
 
 
@@ -39,8 +45,17 @@ export class SignupComponent implements OnInit {
   public initSignupForm(){
     this.signupForm = this.formBuilder.group({
       emailControl: ['', [Validators.required, Validators.email]],
-      passwordControl: ['',[Validators.required, this.validatorService.validatePasswordStrength]],
-      retypePasswordControl: ['', [Validators.required, this.validatorService.validatePasswordMatch]],
+      passwordControl: ['', [Validators.required, (control: FormControl) => {
+        const isValid = !control || !control.value ? false : control.value.length < 6 ? false : true;
+        return isValid ? null : {
+            validatePasswordStrength: {
+                valid: false
+            }
+        };
+      }]],
+      retypePasswordControl: ['', [Validators.required, (control: FormControl) => {
+        return this.validatorService.validatePasswordMatch(control, this.inputString);
+      }]],
       fullNameControl: ['', [Validators.required]],
       dobControl: ['', [Validators.required, this.validatorService.validateDOB]],
       addressControl: ['', [Validators.required]],

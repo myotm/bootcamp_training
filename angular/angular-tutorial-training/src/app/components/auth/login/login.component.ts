@@ -12,6 +12,7 @@ import { ValidatorService } from '../../../services/validator.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
   @Input() public user : User;
 
@@ -29,7 +30,9 @@ export class LoginComponent implements OnInit {
       address: 'YANGON',
       gender: 'Male',
       dob: 'January',
-      phoneNo: 123
+      phoneNo: 123,
+      city: 'Kuala Lumpur',
+      country: 'Malaysia'
     };
    }
 
