@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { HttpService } from '../api/http.service';
-import { ServerResponseCodes } from '../../models/constants';
+import { ServerResponseCodes, User } from '../../models';
 
 @Injectable()
 export class AuthService {
@@ -26,5 +25,20 @@ export class AuthService {
 
     public logout(): void {
     }
+
+
+    public signup(user: User): Observable<any>{
+        return this.http.post('/auth/signup', user).map((result: any) => {
+            if(result.status === ServerResponseCodes.SUCCESS){
+                if(result.data){
+                    return result.data;
+                }
+                return null;
+            }
+            return null;
+        }).catch(err => Observable.throw(err));
+    }
+
+    
 }
 

@@ -10,7 +10,7 @@ var appConfig = require('./config/config.json');
 process.title="bootcamptraining_API";
 
 var app = express();
-
+    
 app.use(httpHelper.enableCORS);
 
 app.use(bodyParser.json({limit: '100mb'}));
@@ -21,7 +21,10 @@ app.use(cookieParser());
 
 //Routes
 var authRoute = require('./routes/authRoute');
+var userRoute = require('./routes/userRoute');
 app.use('./v1/bootcamp_training/api/auth', authRoute);
+app.use('./v1/bootcamp_training/api/user', userRoute);
+
 
 app.use(function(req, res, next){
     var err = new Error('Not found');

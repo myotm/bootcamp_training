@@ -24,7 +24,7 @@
       </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input  matInput placeholder="Retype Password" type="password"  formControlName="retypePasswordControl">
+      <input id="input_retypePwd"  matInput placeholder="Retype Password" type="password"  formControlName="retypePasswordControl">
       <mat-error *ngIf="signupForm.controls.retypePasswordControl.hasError('required')">
         Password is required.
       </mat-error>

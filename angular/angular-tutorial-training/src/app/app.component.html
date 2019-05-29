@@ -8,3 +8,11 @@
     </div>
 </nav>
 <router-outlet></router-outlet>
+
+<div *ngIf="showLoginPage">
+    <app-login [user]="user" (loginClick)="onLoginSuccess()" (toggleAuthClick)="toggleAuth($event)"></app-login>
+</div>
+
+<div *ngIf="!showLoginPage">
+    <app-signup [user]="user" (signupClick)="onSignupSuccess()" (toggleAuthClick)="toggleAuth($event)"></app-signup>
+</div>

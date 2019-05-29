@@ -2,7 +2,7 @@ exports.login = (req, res) => {
     var user = req.body;
 
     global.db.usertable.findOne({
-        email: usertable.email
+        email: user.email
     }, (error, foundUser) => {
         if(error){
             res.status(500).json({
@@ -28,6 +28,23 @@ exports.login = (req, res) => {
                     });
                 }
             }
+        }
+    });
+}
+
+exports.signup = (req, res) => {
+    var user = req.body;
+    global.db.user.insert(user, (err, result) => {
+        if (err) {
+            res.status(500).json({
+                status: "ERROR",
+                err: "Error while signup. DB ERROR."
+            });
+        } else {
+            res.status(200).json({
+                status: "SUCCESS",
+                data: result
+            });
         }
     });
 }
