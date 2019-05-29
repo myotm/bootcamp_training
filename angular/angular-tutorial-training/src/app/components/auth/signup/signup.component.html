@@ -40,10 +40,16 @@
         </mat-error>
     </mat-form-field>
     <!-- Gender -->
-    <mat-radio-group>
+    <!-- <mat-radio-group>
       <mat-radio-button value="Male">Male</mat-radio-button>
       <mat-radio-button value="Female">Female</mat-radio-button>
-    </mat-radio-group>
+    </mat-radio-group> -->
+    <mat-form-field>
+      <input matInput placeholder="Gender" formControlName="genderControl" [(ngModel)]="user.gender">
+      <mat-error *ngIf="signupForm.controls.genderControl.hasError('required')">
+        Gender is required.
+      </mat-error>
+    </mat-form-field>
 
     <!-- DOB -->
     <mat-form-field>

@@ -36,6 +36,7 @@ exports.signup = (req, res) => {
     var user = req.body;
     global.db.user.insert(user, (err, result) => {
         if (err) {
+            console.log("-----------ERR--------", err);
             res.status(500).json({
                 status: "ERROR",
                 err: "Error while signup. DB ERROR."

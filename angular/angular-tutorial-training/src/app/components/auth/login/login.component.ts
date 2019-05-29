@@ -5,7 +5,8 @@ import {
 } from '@angular/core';
 import { User } from '../../../models/user.model';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { ValidatorService } from '../../../services/validator.service';
+import { LocationService, AuthService, ValidatorService, HttpService, UserApiService } from 'src/app/services';
+
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
 
   @Output() toggleAuthclick = new EventEmitter<boolean>();
   
-  constructor( private formbuilder : FormBuilder, private validatorService: ValidatorService ) {
+  constructor( private formbuilder : FormBuilder, private validatorService: ValidatorService, 
+    private locationService: LocationService, private authService: AuthService ) {
     this.user = {
       email: 'myo',
       password: 'myo123',
@@ -50,13 +52,16 @@ export class LoginComponent implements OnInit {
   }
 
   
-  
-
-  
   public onLoginClick(){
-    this.loginClick.emit();
-    console.log("Pressed Login.");
-    console.log(this.user.email + "--------" + this.user.fullName + " has logged in.");
+    this.authService.login(this.user.email, this.user.password)
+            .subscribe(user => {
+                if(user) {
+                    this.user = user;
+                    this.loginClick.emit();
+                }
+            }, err => { 
+                console.log('Error');
+            });
     
   }
 

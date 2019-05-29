@@ -1,9 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { User } from '../../../models/user.model';
+import { User, Auth } from '../../../models/user.model';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { ValidatorService } from '../../../services/validator.service';
 import { FormControl } from '@angular/forms';
-import { LocationService } from 'src/app/services/location.service';
+import { LocationService, AuthService, ValidatorService, HttpService, UserApiService } from 'src/app/services';
 
 @Component({
   selector: 'app-signup',
@@ -25,7 +24,8 @@ export class SignupComponent implements OnInit {
 
 
 
-  constructor( private formBuilder: FormBuilder, private validatorService: ValidatorService, private locationService: LocationService ) { 
+  constructor( private formBuilder: FormBuilder, private validatorService: ValidatorService, 
+    private locationService: LocationService, private authService: AuthService ) { 
     this.user = {
       email: 'myo',
       password: 'myo123',
@@ -65,6 +65,7 @@ export class SignupComponent implements OnInit {
         return this.validatorService.validatePasswordMatch(control, this.user.password);
       }]],
       fullNameControl: ['', [Validators.required]],
+      genderControl: ['', [Validators.required]],
       dobControl: ['', [Validators.required, this.validatorService.validateDOB]],
       addressControl: ['', [Validators.required]],
       phoneControl: ['', [Validators.required, this.validatorService.validatePhone]],
@@ -78,7 +79,13 @@ export class SignupComponent implements OnInit {
   }
 
   public onSignupClick() {
-    this.signupClick.emit();
+    this.authService.signup(this.user).subscribe(user => {
+      if(user) {
+        this.signupClick.emit();
+      }
+    }, err => {
+        console.log('Error after signupClick.');
+      });
   }
 
   public onCountrySelected(){

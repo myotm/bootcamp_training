@@ -22,8 +22,8 @@ app.use(cookieParser());
 //Routes
 var authRoute = require('./routes/authRoute');
 var userRoute = require('./routes/userRoute');
-app.use('./v1/bootcamp_training/api/auth', authRoute);
-app.use('./v1/bootcamp_training/api/user', userRoute);
+app.use('/v1/bootcamptraining/api/auth', authRoute);
+app.use('/v1/bootcamptraining/api/user', userRoute);
 
 
 app.use(function(req, res, next){
