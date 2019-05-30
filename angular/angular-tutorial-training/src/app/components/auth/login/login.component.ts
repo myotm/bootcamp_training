@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit {
 
   
   public onLoginClick(){
+    
     this.authService.login(this.user.email, this.user.password)
             .subscribe(user => {
                 if(user) {
